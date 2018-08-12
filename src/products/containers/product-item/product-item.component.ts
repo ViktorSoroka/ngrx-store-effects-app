@@ -1,31 +1,16 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Pizza } from '../../models/pizza.model';
-import { PizzasService } from '../../services/pizzas.service';
-
 import { Topping } from '../../models/topping.model';
-import { ToppingsService } from '../../services/toppings.service';
+
+import { PizzasService } from '../../services';
+import { ToppingsService } from '../../services';
 
 @Component({
   selector: 'product-item',
   styleUrls: ['product-item.component.scss'],
-  template: `
-    <div 
-      class="product-item">
-      <pizza-form
-        [pizza]="pizza"
-        [toppings]="toppings"
-        (selected)="onSelect($event)"
-        (create)="onCreate($event)"
-        (update)="onUpdate($event)"
-        (remove)="onRemove($event)">
-        <pizza-display
-          [pizza]="visualise">
-        </pizza-display>
-      </pizza-form>
-    </div>
-  `,
+  templateUrl: 'product-item.component.html',
 })
 export class ProductItemComponent implements OnInit {
   pizza: Pizza;
@@ -43,6 +28,7 @@ export class ProductItemComponent implements OnInit {
     this.pizzaService.getPizzas().subscribe(pizzas => {
       const param = this.route.snapshot.params.id;
       let pizza;
+
       if (param === 'new') {
         pizza = {};
       } else {
@@ -58,6 +44,7 @@ export class ProductItemComponent implements OnInit {
 
   onSelect(event: number[]) {
     let toppings;
+
     if (this.toppings && this.toppings.length) {
       toppings = event.map(id =>
         this.toppings.find(topping => topping.id === id)
@@ -82,6 +69,7 @@ export class ProductItemComponent implements OnInit {
 
   onRemove(event: Pizza) {
     const remove = window.confirm('Are you sure?');
+
     if (remove) {
       this.pizzaService.removePizza(event).subscribe(() => {
         this.router.navigate([`/products`]);
