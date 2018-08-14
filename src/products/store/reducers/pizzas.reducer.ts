@@ -33,9 +33,14 @@ export function reducer(state = initialState, action: fromPizzas.PizzasAction): 
         ...state,
         loading: false,
         loaded: true,
+        data: action.payload,
       };
     }
   }
 
   return state;
 }
+
+export const getPizzasLoading = (state: PizzasState) => state.loading;
+export const getPizzasLoaded = (state: PizzasState) => state.loaded;
+export const getPizzas = (state: PizzasState) => state.data;
