@@ -1,25 +1,16 @@
-import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
+import { ActionReducerMap, createFeatureSelector } from '@ngrx/store';
 
 import * as fromPizzas from './pizzas.reducer';
+import * as fromToppings from './toppings.reducer';
 
 export interface ProductsState {
   pizzas: fromPizzas.PizzasState;
+  toppings: fromToppings.ToppingsState;
 }
 
 export const reducers: ActionReducerMap<ProductsState> = {
   pizzas: fromPizzas.reducer,
+  toppings: fromToppings.reducer,
 };
 
 export const getProductsState = createFeatureSelector<ProductsState>('products');
-
-export const getPizzasState = createSelector(
-  getProductsState,
-  (state: ProductsState) => state.pizzas
-);
-
-export const getPizzasEntities = createSelector(getPizzasState, fromPizzas.getPizzasEntities);
-export const getPizzas = createSelector(getPizzasEntities, entities => {
-  return Object.keys(entities).map(id => entities[id]);
-});
-export const getPizzasLoading = createSelector(getPizzasState, fromPizzas.getPizzasLoading);
-export const getPizzasLoaded = createSelector(getPizzasState, fromPizzas.getPizzasLoaded);
