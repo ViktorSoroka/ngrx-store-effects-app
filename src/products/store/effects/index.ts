@@ -5,4 +5,3 @@ export const effects: any[] = [PizzasEffects, ToppingsEffects];
 
 export * from './pizzas.effect';
 export * from './toppings.effect';
-

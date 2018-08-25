@@ -7,12 +7,7 @@ import {
   OnChanges,
   SimpleChanges,
 } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  FormBuilder,
-  Validators,
-} from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { map } from 'rxjs/operators';
 
@@ -27,13 +22,19 @@ import { Topping } from '../../models/topping.model';
 export class PizzaFormComponent implements OnChanges, OnInit {
   exists = false;
 
-  @Input() pizza: Pizza;
-  @Input() toppings: Topping[];
+  @Input()
+  pizza: Pizza;
+  @Input()
+  toppings: Topping[];
 
-  @Output() selected = new EventEmitter<number[]>();
-  @Output() created = new EventEmitter<Pizza>();
-  @Output() updated = new EventEmitter<Pizza>();
-  @Output() removed = new EventEmitter<Pizza>();
+  @Output()
+  selected = new EventEmitter<number[]>();
+  @Output()
+  created = new EventEmitter<Pizza>();
+  @Output()
+  updated = new EventEmitter<Pizza>();
+  @Output()
+  removed = new EventEmitter<Pizza>();
 
   form = this.fb.group({
     name: ['', Validators.required],
@@ -53,9 +54,7 @@ export class PizzaFormComponent implements OnChanges, OnInit {
   ngOnInit() {
     this.form
       .get('toppings')
-      .valueChanges.pipe(
-      map(toppings => toppings.map((topping: Topping) => topping.id)),
-    )
+      .valueChanges.pipe(map(toppings => toppings.map((topping: Topping) => topping.id)))
       .subscribe(value => this.selected.emit(value));
   }
 

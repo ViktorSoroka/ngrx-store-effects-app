@@ -8,14 +8,14 @@ export const DROP_ANIMATION = trigger('drop', [
     style({ transform: 'translateY(-200px)', opacity: 0 }),
     animate(
       '300ms cubic-bezier(1.000, 0.000, 0.000, 1.000)',
-      style({ transform: 'translateY(0)', opacity: 1 })
+      style({ transform: 'translateY(0)', opacity: 1 }),
     ),
   ]),
   transition(':leave', [
     style({ transform: 'translateY(0)', opacity: 1 }),
     animate(
       '200ms cubic-bezier(1.000, 0.000, 0.000, 1.000)',
-      style({ transform: 'translateY(-200px)', opacity: 0 })
+      style({ transform: 'translateY(-200px)', opacity: 0 }),
     ),
   ]),
 ]);
@@ -28,5 +28,6 @@ export const DROP_ANIMATION = trigger('drop', [
   templateUrl: 'pizza-display.component.html',
 })
 export class PizzaDisplayComponent {
-  @Input() pizza: Pizza;
+  @Input()
+  pizza: Pizza;
 }

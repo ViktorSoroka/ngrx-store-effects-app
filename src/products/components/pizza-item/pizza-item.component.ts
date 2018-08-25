@@ -1,8 +1,4 @@
-import {
-  Component,
-  Input,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'pizza-item',
@@ -11,5 +7,6 @@ import {
   templateUrl: 'pizza-item.component.html',
 })
 export class PizzaItemComponent {
-  @Input() pizza: any;
+  @Input()
+  pizza: any;
 }

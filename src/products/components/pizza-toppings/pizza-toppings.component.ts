@@ -1,9 +1,4 @@
-import {
-  Component,
-  Input,
-  forwardRef,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component, Input, forwardRef, ChangeDetectionStrategy } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { Topping } from '../../models/topping.model';
@@ -22,7 +17,8 @@ const PIZZA_TOPPINGS_ACCESSOR = {
   templateUrl: 'pizza-toppings.component.html',
 })
 export class PizzaToppingsComponent implements ControlValueAccessor {
-  @Input() toppings: Topping[] = [];
+  @Input()
+  toppings: Topping[] = [];
 
   value: Topping[] = [];
 

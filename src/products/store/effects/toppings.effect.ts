@@ -13,9 +13,11 @@ export class ToppingsEffects {
 
   @Effect()
   loadToppings$ = this.actions$.ofType(toppingsActions.LOAD_TOPPINGS).pipe(
-    switchMap(() => this.toppingsService.getToppings().pipe(
-      map(toppings => new toppingsActions.loadToppingsSuccess(toppings)),
-      catchError(error => of(new toppingsActions.loadToppingsFail(error)))
-    ))
-  )
+    switchMap(() =>
+      this.toppingsService.getToppings().pipe(
+        map(toppings => new toppingsActions.loadToppingsSuccess(toppings)),
+        catchError(error => of(new toppingsActions.loadToppingsFail(error))),
+      ),
+    ),
+  );
 }

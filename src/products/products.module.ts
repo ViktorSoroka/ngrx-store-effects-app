@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
 import { reducers, effects } from './store';
@@ -16,7 +17,6 @@ import * as fromContainers from './containers';
 
 // services
 import * as fromServices from './services';
-import { EffectsModule } from '@ngrx/effects';
 
 // routes
 export const ROUTES: Routes = [
