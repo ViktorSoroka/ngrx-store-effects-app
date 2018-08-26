@@ -30,7 +30,7 @@ export class PizzaExistsGuard implements CanActivate {
     return this.store.select(fromStore.getPizzasLoaded).pipe(
       tap(loaded => {
         if (!loaded) {
-          this.store.dispatch(new fromStore.loadPizzas());
+          this.store.dispatch(new fromStore.LoadPizzas());
         }
       }),
       filter(loaded => loaded),
