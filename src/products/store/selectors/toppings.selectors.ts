@@ -10,7 +10,7 @@ export const getToppingsState = createSelector(
 
 export const getToppingsEntities = createSelector(
   getToppingsState,
-  fromToppings.getToppingsEntities,
+  fromToppings.getToppingEntities,
 );
 
 export const getAllToppings = createSelector(getToppingsEntities, entities => {

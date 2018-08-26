@@ -17,7 +17,7 @@ import { Topping } from '../../models/topping.model';
 export class ProductItemComponent implements OnInit {
   pizza$: Observable<Pizza>;
   toppings$: Observable<Topping[]>;
-  visualize$: Observable<Pizza>;
+  visualise$: Observable<Pizza>;
 
   constructor(private store: Store<fromStore.ProductsState>) {}
 
@@ -27,30 +27,30 @@ export class ProductItemComponent implements OnInit {
         const pizzaExists = pizza && pizza.toppings;
         const toppings = pizzaExists ? pizza.toppings.map(({ id }) => id) : [];
 
-        this.store.dispatch(new fromStore.selectToppings(toppings));
+        this.store.dispatch(new fromStore.SelectToppings(toppings));
       }),
     );
     this.toppings$ = this.store.select(fromStore.getAllToppings);
-    this.visualize$ = this.store.select(fromStore.getVisulalizePizza);
+    this.visualise$ = this.store.select(fromStore.getVisualisePizza);
   }
 
   onSelect(event: number[]) {
-    this.store.dispatch(new fromStore.selectToppings(event));
+    this.store.dispatch(new fromStore.SelectToppings(event));
   }
 
   onCreate(event: Pizza) {
-    this.store.dispatch(new fromStore.createPizza(event));
+    this.store.dispatch(new fromStore.CreatePizza(event));
   }
 
   onUpdate(event: Pizza) {
-    this.store.dispatch(new fromStore.updatePizza(event));
+    this.store.dispatch(new fromStore.UpdatePizza(event));
   }
 
   onRemove(event: Pizza) {
     const remove = window.confirm('Are you sure?');
 
     if (remove) {
-      this.store.dispatch(new fromStore.removePizza(event));
+      this.store.dispatch(new fromStore.RemovePizza(event));
     }
   }
 }

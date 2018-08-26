@@ -25,7 +25,7 @@ export const getPizzas = createSelector(getPizzasEntities, entities => {
   return Object.keys(entities).map(id => entities[id]);
 });
 
-export const getVisulalizePizza = createSelector(
+export const getVisualisePizza = createSelector(
   getSelectedPizza,
   fromToppings.getToppingsEntities,
   fromToppings.getSelectedToppings,
