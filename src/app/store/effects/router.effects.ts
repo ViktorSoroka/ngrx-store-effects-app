@@ -12,22 +12,22 @@ export class RouterEffects {
   constructor(private actions: Actions, private router: Router, private location: Location) {}
 
   @Effect({ dispatch: false })
-  navigate$ = this.actions.ofType(routerActions.GO).pipe(
-    map((action: routerActions.Go) => action.payload),
+  navigate$ = this.actions.ofType<routerActions.Go>(routerActions.GO).pipe(
+    map(action => action.payload),
     tap(({ path, query: queryParams, extras }) => {
       this.router.navigate(path, { queryParams, ...extras });
     }),
   );
 
   @Effect({ dispatch: false })
-  back$ = this.actions.ofType(routerActions.BACK).pipe(
+  back$ = this.actions.ofType<routerActions.Back>(routerActions.BACK).pipe(
     tap(() => {
       this.location.back();
     }),
   );
 
   @Effect({ dispatch: false })
-  forward$ = this.actions.ofType(routerActions.FORWARD).pipe(
+  forward$ = this.actions.ofType<routerActions.Forward>(routerActions.FORWARD).pipe(
     tap(() => {
       this.location.forward();
     }),
